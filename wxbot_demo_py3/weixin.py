@@ -311,11 +311,12 @@ class WebWeixin(object):
         self.MemberList = dic['MemberList']
 
         if dic['Seq'] != 0:
-            url = self.base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s&seq=%s' % (
-            self.pass_ticket, self.skey, int(time.time()),dic['Seq'])
-            dic = self._post(url, {})
-            self.MemberCount += dic['MemberCount']
-            self.MemberList.extend(dic['MemberList'])
+            while dic['Seq'] != 0:
+                url = self.base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s&seq=%s' % (
+                self.pass_ticket, self.skey, int(time.time()),dic['Seq'])
+                dic = self._post(url, {})
+                self.MemberCount += dic['MemberCount']
+                self.MemberList.extend(dic['MemberList'])
 
         ContactList = self.MemberList[:]
         GroupList = self.GroupList[:]
