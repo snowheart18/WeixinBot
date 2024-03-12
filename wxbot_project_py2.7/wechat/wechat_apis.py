@@ -326,6 +326,14 @@ class WXAPI(object):
 
         self.MemberCount = dic['MemberCount']
         self.MemberList = dic['MemberList']
+
+        if dic['Seq'] != 0:
+            url = self.wx_conf['API_webwxgetcontact'] + '?pass_ticket=%s&skey=%s&r=%s&seq=%s' % (
+            self.pass_ticket, self.skey, int(time.time()),dic['Seq'])
+            dic = post(url, {})
+            self.MemberCount += dic['MemberCount']
+            self.MemberList.extend(dic['MemberList'])
+
         ContactList = self.MemberList[:]
         GroupList = self.GroupList[:]
         PublicUsersList = self.PublicUsersList[:]
@@ -612,7 +620,7 @@ class WXAPI(object):
                 "ClientMsgId": clientMsgId
             }
         }
-        r = post(url, data_json)
+        dic = post(url, data_json)
         return dic['BaseResponse']['Ret'] == 0
 
     def webwxsendemoticon(self, user_id, media_id):
@@ -638,7 +646,7 @@ class WXAPI(object):
                 "ClientMsgId": clientMsgId
             }
         }
-        r = post(url, data_json)
+        dic = post(url, data_json)
         return dic['BaseResponse']['Ret'] == 0
 
     def webwxsendappmsg(self, user_id, data):
@@ -681,7 +689,7 @@ class WXAPI(object):
             },
             "Scene": 0
         }
-        r = post(url, data_json)
+        dic = post(url, data_json)
         return dic['BaseResponse']['Ret'] == 0
 
     def webwxcreatechatroom(self, uid_arr):

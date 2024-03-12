@@ -161,7 +161,7 @@ class WeChatMsgProcessor(object):
             msg['user_nickname'],
             msg['msg_type'],
             msg['emoticon'],
-            msg['content'],
+            msg['text'],
             msg['image'],
             msg['video'],
             msg['voice'],
@@ -175,7 +175,7 @@ class WeChatMsgProcessor(object):
         )
         self.db.insert(Constant.TABLE_GROUP_MSG_LOG, col)
 
-        text = msg['content']
+        text = msg['text']
         if text and text[0] == '@':
             n = trans_coding(text).find(u'\u2005')
             name = trans_coding(text)[1:n].encode('utf-8')
@@ -189,7 +189,7 @@ class WeChatMsgProcessor(object):
         """
         wechat = self.wechat
 
-        text = trans_coding(msg['content']).encode('utf-8')
+        text = trans_coding(msg['text']).encode('utf-8')
         uid = msg['raw_msg']['FromUserName']
 
         if text == 'test_revoke': # 撤回消息测试

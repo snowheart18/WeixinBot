@@ -301,7 +301,7 @@ class WebWeixin(object):
 
     def webwxgetcontact(self):
         SpecialUsers = self.SpecialUsers
-        url = self.base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s' % (
+        url = self.base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s&seq=0' % (
             self.pass_ticket, self.skey, int(time.time()))
         dic = self._post(url, {})
         if dic == '':
@@ -309,11 +309,18 @@ class WebWeixin(object):
 
         self.MemberCount = dic['MemberCount']
         self.MemberList = dic['MemberList']
+
+        if dic['Seq'] != 0:
+            url = self.base_uri + '/webwxgetcontact?pass_ticket=%s&skey=%s&r=%s&seq=%s' % (
+            self.pass_ticket, self.skey, int(time.time()),dic['Seq'])
+            dic = self._post(url, {})
+            self.MemberCount += dic['MemberCount']
+            self.MemberList.extend(dic['MemberList'])
+
         ContactList = self.MemberList[:]
         GroupList = self.GroupList[:]
         PublicUsersList = self.PublicUsersList[:]
         SpecialUsersList = self.SpecialUsersList[:]
-
         for i in range(len(ContactList) - 1, -1, -1):
             Contact = ContactList[i]
             if Contact['VerifyFlag'] & 8 != 0:  # 公众号/服务号
