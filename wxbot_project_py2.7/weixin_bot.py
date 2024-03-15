@@ -19,6 +19,7 @@ import traceback
 import os
 import logging
 import time
+import requests
 #===================================================
 
 
@@ -275,7 +276,7 @@ while True:
     
     # close log file,send terminal message to robot owner
     # 发送消息到指定下地址：
-    response = request.post(ConfigManager.get('setting', 'warning_url'),'{"msgtype":"text","text":{"content":"wxrobot offline"}}')    
+    response = requests.post(ConfigManager.get('setting', 'warning_url'),'{"msgtype":"text","text":{"content":"wxrobot offline"}}')    
     log_file.close()
 
     if wechat.exit_code == 0:
