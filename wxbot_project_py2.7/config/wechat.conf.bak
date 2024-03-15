@@ -27,6 +27,7 @@ contact_special_users_list = Pickle/SpecialUsersList.pkl
 server_mode = False
 server_log_file = server.log
 log_mode = False
+warning_url = 
 
 [mysql]
 host = localhost

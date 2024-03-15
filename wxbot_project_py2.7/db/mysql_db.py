@@ -169,7 +169,7 @@ class MysqlDB(object):
             if hasReturn:
                 result = c.fetchall()
 
-        except Exception, e:
+        except Exception as e:
             Log.error(traceback.format_exc())
             self.conn.rollback()
         finally:

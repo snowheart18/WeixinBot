@@ -9,7 +9,7 @@ from sendgrid.helpers.mail import *
 class SGMail(object):
 
     def __init__(self, apikey, from_email, to_email):
-        self.sg = sendgrid.SendGridAPIClient(apikey=apikey)
+        self.sg = sendgrid.SendGridAPIClient(api_key=apikey)
         self.from_email = Email(from_email)
         self.to_email = Email(to_email)
 

@@ -32,7 +32,10 @@ class ConfigManager(object):
 
     def getpath(self, dir):
         prefix = self.get('setting', 'prefix')
-        return prefix + self.get('setting', dir)
+        dir = self.get('setting', dir)
+        if dir.startswith('/'):
+            return dir
+        return prefix + dir
 
     def setup_database(self):
         path = self.get('setting', 'prefix')
