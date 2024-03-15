@@ -276,7 +276,8 @@ while True:
     
     # close log file,send terminal message to robot owner
     # 发送消息到指定下地址：
-    response = requests.post(cm.get('setting', 'warning_url'),'{"msgtype":"text","text":{"content":"wxrobot offline"}}')    
+    response = requests.post(cm.get('setting', 'warning_url'),'{"msgtype":"text","text":{"content":"wxrobot offline"}}')
+    log_file = open(eval(cm.get('handler_fileHandler', 'args'))[0], 'r') 
     log_file.close()
 
     if wechat.exit_code == 0:
