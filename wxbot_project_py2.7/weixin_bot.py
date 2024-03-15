@@ -268,10 +268,14 @@ while True:
         wechat.stop()
     
     # send a mail to tell the wxbot is failing
-    subject = 'wxbot stop message'
-    log_file = open(eval(cm.get('handler_fileHandler', 'args'))[0], 'r')
-    mail_content = '<pre>' + str(wechat) + '\n\n-----\nLogs:\n-----\n\n' + ''.join(log_file.readlines()[-100:]) + '</pre>'
-    sg.send_mail(subject, mail_content, 'text/html')
+    #subject = 'wxbot stop message'
+    #log_file = open(eval(cm.get('handler_fileHandler', 'args'))[0], 'r')
+    #mail_content = '<pre>' + str(wechat) + '\n\n-----\nLogs:\n-----\n\n' + ''.join(log_file.readlines()[-100:]) + '</pre>'
+    #sg.send_mail(subject, mail_content, 'text/html')
+    
+    # close log file,send terminal message to robot owner
+    # 发送消息到指定下地址：
+    response = request.post(ConfigManager.get('setting', 'warning_url'),'{"msgtype":"text","text":{"content":"wxrobot offline"}}')    
     log_file.close()
 
     if wechat.exit_code == 0:
