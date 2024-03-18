@@ -112,10 +112,9 @@ def get(url, api=None):
     request = urllib2.Request(url=url)
     request.add_header(*Constant.HTTP_HEADER_CONNECTION)
     request.add_header(*Constant.HTTP_HEADER_REFERER)
-    request.add_header(*Constant.HTTP_HEADER_USERAGENT)
     request.add_header(*Constant.HTTP_HEADER_EXTSPAM)
     request.add_header(*Constant.HTTP_CLIENT_VERSION)
-    
+
     if api in ['webwxgetvoice', 'webwxgetvideo']:
         request.add_header(*Constant.HTTP_HEADER_RANGE)
 
