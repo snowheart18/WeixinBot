@@ -296,7 +296,7 @@ class WeChat(WXAPI):
             # save contacts
             Log.debug('save contacts')
             self.save_contacts()
-        except Exception, e:
+        except Exception as e:
             Log.error(traceback.format_exc())
             return False
         return True
@@ -349,7 +349,7 @@ class WeChat(WXAPI):
             self.GroupMemeberList = pickle_load(self.pickle_file['GroupMemeberList'])
             self.SpecialUsersList = pickle_load(self.pickle_file['SpecialUsersList'])
             return True
-        except Exception, e:
+        except Exception as e:
             Log.error(traceback.format_exc())
         return False
 
