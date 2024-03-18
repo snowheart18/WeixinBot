@@ -13,7 +13,7 @@ class Constant(object):
     QRCODE_BLACK = '\033[40m  \033[0m'
     QRCODE_WHITE = '\033[47m  \033[0m'
 
-    HTTP_HEADER_USERAGENT = ['User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36']
+    HTTP_HEADER_USERAGENT = [('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36')]
     HTTP_HEADER_CONTENTTYPE = ['ContentType', 'application/json; charset=UTF-8']
     HTTP_HEADER_CONNECTION = ['Connection', 'keep-alive']
     HTTP_HEADER_REFERER = ['Referer', 'https://wx.qq.com/']
